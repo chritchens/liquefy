@@ -1,0 +1,37 @@
+dist: trusty
+sudo: false
+
+language: rust
+
+rust:
+  - stable
+  - beta
+  - nightly
+
+branches:
+  only: master
+
+before_cache: chmod -R a+r $HOME/.cargo
+
+cache: cargo
+
+before_install:
+  - set -e
+  - rustup self update
+
+install:
+  - rustup update
+  - source ~/.cargo/env || true
+
+script:
+  - cargo build --verbose --all
+  - cargo test --verbose --all
+
+after_script: set +e
+
+jobs:
+  allow_failures:
+    - rust: nightly
+
+notifications:
+  email: false
