@@ -1,4 +1,4 @@
-//! `libliquefy` is the internal library of the liquefy Liquid Network hub client.
+//! `libliquefy` is the library used by the liquefy Liquid Network hub client.
 //! The library data models, requests and responses are built around those documented
 //! in https://public.liquid.network/swagger, https://rinkeby.liquid.network/swagger
 //! and https://limbo.liquid.network/swagger.
