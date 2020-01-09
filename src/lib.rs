@@ -36,20 +36,17 @@ pub mod ws {
     /// `AckRequest` is an ACK request in the WS Notification API.
     pub type AckRequest = GenericRequest<AckOp, UUID>;
 
-    /// `RequestStreams` is a stream of textual data used in `SubscribeRequest` and `UnsubscribeRequest`.
-    pub type RequestStreams = Vec<String>;
-
     /// `SubscribeOp` is the operation type of a `SubscribeRequest`.
     pub struct SubscribeOp;
 
     /// `SubscribeRequest` is a subscribe request in the WS Notification API.
-    pub type SubscribeRequest = GenericRequest<SubscribeOp, RequestStreams>;
+    pub type SubscribeRequest = GenericRequest<SubscribeOp, Vec<String>>;
 
     /// `UnsubscribeOp` is the operation type of an `UnsubscribeRequest`.
     pub struct UnsubscribeOp;
 
     /// `UnsubscribeRequest` is an unsubscribe request in the WS Notification API.
-    pub type UnsubscribeRequest = GenericRequest<UnsubscribeOp, RequestStreams>;
+    pub type UnsubscribeRequest = GenericRequest<UnsubscribeOp, Vec<String>>;
 
     /// `GenericResponse` is a generic response in the WS Notification API.
     pub struct GenericResponse<Type, Data> {
@@ -102,22 +99,47 @@ pub mod ws {
     }
 
     /// `TransferAuditModel` is the equivalent of the TransferAuditSerializer model in the Swagger documentations.
-    pub struct TransferAuditModel; // TODO
+    pub struct TransferAuditModel {
+        // TODO: "TransferAuditSerializer check the models section of the docs"?
+    }
 
     /// `WalletAdmissionDataModel` is the equivalent of the WalletAdmissionDataSerializer model in the Swagger documentations.
-    pub struct WalletAdmissionDataModel; // TODO
+    pub struct WalletAdmissionDataModel {
+        pub address: String,
+        pub token: String,
+        pub eon_number: i64,
+        pub wallet_signature: String,
+        pub operator_signature: String,
+        pub trail_identifier: i64,
+    }
 
     /// `DepositNotificationModel` is the equivalent of the DepositNotificationSerializer model in the Swagger documentations.
-    pub struct DepositNotificationModel; // TODO
+    pub struct DepositNotificationModel {
+        // TODO: "...Deposit (check the models section)"?
+        pub address: String,
+        pub token: String,
+    }
 
     /// `WithdrawalRequestNotificationModel` is the equivalent of the WithdrawalRequestNotificationSerializer model in the Swagger documentations.
-    pub struct WithdrawalRequestNotificationModel; // TODO
+    pub struct WithdrawalRequestNotificationModel {
+        // TODO: "...WithdrawalRequest (check the models section)"?
+        pub address: String,
+        pub token: String,
+    }
 
     /// `WithdrawalNotificationModel` is the equivalent of the WithdrawalNotificationSerializer model in the Swagger documentations.
-    pub struct WithdrawalNotificationModel; // TODO
+    pub struct WithdrawalNotificationModel {
+        // TODO: "...Withdrawal (check the models section)"?
+        pub address: String,
+        pub token: String,
+    }
 
     /// `WalletDataNotificationModel` is the equivalent of the WalletDataNotificationSerializer model in the Swagger documentations.
-    pub struct WalletDataNotificationModel; // TODO
+    pub struct WalletDataNotificationModel {
+        // TODO: "...WalletData (check the models section)"?
+        pub address: String,
+        pub token: String,
+    }
 
     /// `WalletEventModel` is the model of wallet event type data.
     pub enum WalletEventModel {
@@ -153,14 +175,20 @@ pub mod ws {
     /// `Response` is a response in the WS Notification API.
     pub type Response<Data> = GenericResponse<ResponseType, Data>;
 
+    /// `StreamData` is response data containing a stream of textual data.
+    pub struct StreamData<Op> {
+        pub req_op: Op,
+        pub stream: Vec<String>,
+    }
+
     /// `SubscribeData` is the data of a `SubscribeResponse`.
-    pub struct SubscribeData; // TODO
+    pub type SubscribeData = StreamData<SubscribeOp>;
 
     /// `SubscribeResponse` is a subscribe response in the WS Notification API.
     pub type SubscribeResponse = Response<SubscribeData>;
 
     /// `UnsubscribeData` is the data of an `UnsubscribeResponse`.
-    pub struct UnsubscribeData; // TODO
+    pub type UnsubscribeData = StreamData<UnsubscribeOp>;
 
     /// `UnsubscribeResponse` is an unsubscribe response in the WS Notification API.
     pub type UnsubscribeResponse = Response<UnsubscribeData>;
