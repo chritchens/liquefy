@@ -83,13 +83,13 @@ pub enum EventType {
     TokenPair(TokenPairEventType),
 }
 
-/// `TransferAuditModel` is the equivalent of the TransferAuditSerializer model in the Swagger documentations.
-pub struct TransferAuditModel {
+/// `TransferAudit` is the equivalent of the TransferAuditSerializer model in the Swagger documentations.
+pub struct TransferAudit {
     // TODO: "TransferAuditSerializer check the models section of the docs"?
 }
 
-/// `WalletAdmissionDataModel` is the equivalent of the WalletAdmissionDataSerializer model in the Swagger documentations.
-pub struct WalletAdmissionDataModel {
+/// `WalletAdmissionData` is the equivalent of the WalletAdmissionDataSerializer model in the Swagger documentations.
+pub struct WalletAdmissionData {
     pub address: String,
     pub token: String,
     pub eon_number: i64,
@@ -98,57 +98,57 @@ pub struct WalletAdmissionDataModel {
     pub trail_identifier: i64,
 }
 
-/// `DepositNotificationModel` is the equivalent of the DepositNotificationSerializer model in the Swagger documentations.
-pub struct DepositNotificationModel {
+/// `DepositNotification` is the equivalent of the DepositNotificationSerializer model in the Swagger documentations.
+pub struct DepositNotification {
     // TODO: "...Deposit (check the models section)"?
     pub address: String,
     pub token: String,
 }
 
-/// `WithdrawalRequestNotificationModel` is the equivalent of the WithdrawalRequestNotificationSerializer model in the Swagger documentations.
-pub struct WithdrawalRequestNotificationModel {
+/// `WithdrawalRequestNotification` is the equivalent of the WithdrawalRequestNotificationSerializer model in the Swagger documentations.
+pub struct WithdrawalRequestNotification {
     // TODO: "...WithdrawalRequest (check the models section)"?
     pub address: String,
     pub token: String,
 }
 
-/// `WithdrawalNotificationModel` is the equivalent of the WithdrawalNotificationSerializer model in the Swagger documentations.
-pub struct WithdrawalNotificationModel {
+/// `WithdrawalNotification` is the equivalent of the WithdrawalNotificationSerializer model in the Swagger documentations.
+pub struct WithdrawalNotification {
     // TODO: "...Withdrawal (check the models section)"?
     pub address: String,
     pub token: String,
 }
 
-/// `WalletDataNotificationModel` is the equivalent of the WalletDataNotificationSerializer model in the Swagger documentations.
-pub struct WalletDataNotificationModel {
+/// `WalletDataNotification` is the equivalent of the WalletDataNotificationSerializer model in the Swagger documentations.
+pub struct WalletDataNotification {
     // TODO: "...WalletData (check the models section)"?
     pub address: String,
     pub token: String,
 }
 
-/// `WalletEventModel` is the model of wallet event type data.
-pub enum WalletEventModel {
-    TransferAudit(TransferAuditModel),
-    WalletAdmissionData(WalletAdmissionDataModel),
-    DepositNotification(DepositNotificationModel),
-    WithdrawalRequestNotification(WithdrawalRequestNotificationModel),
-    WithdrawalNotification(WithdrawalNotificationModel),
-    WalletDataNotification(WalletDataNotificationModel),
+/// `WalletEvent` is the model of wallet event type data.
+pub enum WalletEvent {
+    TransferAudit(TransferAudit),
+    WalletAdmissionData(WalletAdmissionData),
+    DepositNotification(DepositNotification),
+    WithdrawalRequestNotification(WithdrawalRequestNotification),
+    WithdrawalNotification(WithdrawalNotification),
+    WalletDataNotification(WalletDataNotification),
 }
 
-/// `TokenEventModel` is the model of token event type data.
-pub struct TokenEventModel(pub TransferAuditModel);
+/// `TokenEvent` is the model of token event type data.
+pub struct TokenEvent(pub TransferAudit);
 
-/// `EventModel` is the model of event data.
-pub enum EventModel {
-    Wallet(WalletEventModel),
-    Token(TokenEventModel),
+/// `Event` is the model of event data.
+pub enum Event {
+    Wallet(WalletEvent),
+    Token(TokenEvent),
 }
 
 /// `NotificationData` is the data of a `NotificationResponse`.
 pub struct NotificationData {
     pub event_type: EventType,
-    pub event_data: EventModel,
+    pub event_data: Event,
 }
 
 /// `NotificationResponse` is a notification response in the WS Notification API.
