@@ -3,6 +3,7 @@
 use crate::error::*;
 use chrono::Utc;
 use http::uri;
+use rug::Integer;
 use serde::de::{self, Visitor};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 use std::fmt;
@@ -69,6 +70,26 @@ impl<'de> Deserialize<'de> for Uri {
         D: Deserializer<'de>,
     {
         deserializer.deserialize_str(UriVisitor)
+    }
+}
+
+/// `Decimal` is a big integer value.
+#[derive(Clone, Eq, PartialEq, Ord, PartialOrd, Serialize, Deserialize)]
+pub struct Decimal(Integer);
+
+impl FromStr for Decimal {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        rug::Integer::from_str(s)
+            .map(|bigint| Decimal(bigint))
+            .map_err(|e| e.into())
+    }
+}
+
+impl ToString for Decimal {
+    fn to_string(&self) -> String {
+        self.0.to_string()
     }
 }
 
@@ -151,7 +172,7 @@ pub struct Token {
     pub short_name: Option<String>,
 }
 
-// `TransferAudit` represents a transfer audit receipt.
+/// `TransferAudit` represents a transfer audit receipt.
 #[derive(Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct TransferAudit {
     pub amount: u64,

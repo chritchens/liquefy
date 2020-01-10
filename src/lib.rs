@@ -6,6 +6,9 @@
 /// Defines the errors used throughout the library.
 pub mod error;
 
+/// Defines the result type used in the library.
+pub mod result;
+
 /// Defines the models used throughout the library.
 pub mod model;
 

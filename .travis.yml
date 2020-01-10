@@ -16,7 +16,9 @@ cache: cargo
 
 before_install:
   - set -e
-  - sudo apt update -q=2 && sudo apt install libssl-dev -yq
+  - sudo apt update -q=2
+  - sudo apt install diffutils gcc make m4 -yq
+  - sudo apt install libssl-dev -yq
   - rustup self update
 
 install:

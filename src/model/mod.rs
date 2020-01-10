@@ -3,6 +3,9 @@
 /// `common` defines the common models of the module.
 pub mod common;
 
+/// `traits` defines the traits used in the module.
+pub mod traits;
+
 /// `http` defines the models of the HTTP API.
 pub mod http;
 
