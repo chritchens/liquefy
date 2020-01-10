@@ -160,10 +160,10 @@ pub mod audit {
         pub wallet: Wallet,
     }
 
-    pub struct Transfers<'a> {
+    pub struct Transfers {
         pub count: i64,
-        pub next: Option<URI<'a>>,
-        pub previous: Option<URI<'a>>,
+        pub next: Option<URI>,
+        pub previous: Option<URI>,
         pub results: Vec<ConciseTransfer>,
     }
 
