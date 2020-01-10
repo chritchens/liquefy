@@ -5,8 +5,8 @@ use crate::utils::UUID;
 
 /// `GenericRequest` is a generic request in the WS Notification API.
 pub struct GenericRequest<Op, Args> {
-    pub req_op: Op,
-    pub req_args: Args,
+    pub op: Op,
+    pub args: Args,
 }
 
 /// `PingOp` is the operation type of a `PingRequest`.
@@ -35,9 +35,9 @@ pub type UnsubscribeRequest = GenericRequest<UnsubscribeOp, Vec<String>>;
 
 /// `GenericResponse` is a generic response in the WS Notification API.
 pub struct GenericResponse<Type, Data> {
-    pub res_type: Type,
-    pub res_uuid: UUID,
-    pub res_data: Data,
+    pub r#type: Type,
+    pub uuid: UUID,
+    pub data: Data,
 }
 
 /// `ErrorType` is the type of an `ErrorRequest`.
@@ -147,8 +147,8 @@ pub enum Event {
 
 /// `NotificationData` is the data of a `NotificationResponse`.
 pub struct NotificationData {
-    pub event_type: EventType,
-    pub event_data: Event,
+    pub r#type: EventType,
+    pub data: Event,
 }
 
 /// `NotificationResponse` is a notification response in the WS Notification API.
@@ -162,7 +162,7 @@ pub type Response<Data> = GenericResponse<ResponseType, Data>;
 
 /// `StreamData` is response data containing a stream of textual data.
 pub struct StreamData<Op> {
-    pub req_op: Op,
+    pub op: Op,
     pub stream: Vec<String>,
 }
 
