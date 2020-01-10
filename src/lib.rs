@@ -1,13 +1,13 @@
-//! `libliquefy` is the library used by the liquefy Liquid Network hub client.
+//! `libliquefy` is the library used by the liquefy Liquidity Network hub client.
 //! The library data models, requests and responses are built around those documented
-//! in https://public.liquid.network/swagger, https://rinkeby.liquid.network/swagger
-//! and https://limbo.liquid.network/swagger.
+//! in https://public.liquidity.network/swagger, https://rinkeby.liquidity.network/swagger
+//! and https://limbo.liquidity.network/swagger.
 
-/// Defines utilities used throughout the library.
-pub mod utils;
+/// Defines the errors used throughout the library.
+pub mod error;
 
-/// Defines the types and functions for the WebSocket Liquidity Network hub API.
-pub mod ws;
+/// Defines the models used throughout the library.
+pub mod model;
 
-/// Defines the types and functions for the HTTP Liquidity Network hub API.
-pub mod http;
+/// Defines the types and functions for the WS and HTTP Liquidity Network hub APIs.
+pub mod request;
