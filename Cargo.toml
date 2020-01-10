@@ -28,6 +28,6 @@ serde_json = "^1.0"
 uuid = { version = "^0.8", features = ["serde", "v1", "v3", "v4", "v5"] }
 chrono = { version = "^0.4", features = ["serde"] }
 uriparse = "^0.6"
-tungstenite = "^0.9"
-reqwest = { version = "^0.10", features = ["json"] }
-tokio = { version = "^0.2", features = ["full"] }
+async-std = "^1.4"
+surf = "^1.0"
+async-tungstenite = { version = "^0.3", features = ["async-std", "async-tls"] }
