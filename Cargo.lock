@@ -462,6 +462,7 @@ dependencies = [
  "snafu",
  "tokio",
  "tungstenite",
+ "uriparse",
  "uuid",
 ]
 
@@ -1168,6 +1169,16 @@ name = "unicode-xid"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
+
+[[package]]
+name = "uriparse"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "510147de69e40714c33465680b4da3138c0953c4dbf25fd47a47f9dc06306614"
+dependencies = [
+ "fnv",
+ "lazy_static",
+]
 
 [[package]]
 name = "url"
