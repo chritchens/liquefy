@@ -1,8 +1,12 @@
 //! `swap` defines the models for interacting with
 //! the HTTP Swap API.
 
+use serde::{Deserialize, Serialize};
+
 use crate::model::common::{SenderActiveState, Signature, Wallet};
 
+/// `Swap` represents a swap operation.
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct Swap {
     pub amount: u64,
     pub amount_swapped: Option<u64>,
@@ -21,15 +25,21 @@ pub struct Swap {
     pub wallet: Wallet,
 }
 
+/// `SwapCancellation` represents a swap cancellation operation.
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct SwapCancellation {
     pub recipient_cancellation_signature: Vec<Signature>,
     pub sender_cancellation_signature: Vec<Signature>,
 }
 
+/// `SwapFinalization` is the result of a swap finalization.
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct SwapFinalization {
     pub finalization_signature: Vec<Signature>,
 }
 
+/// `SwapFreeze` is the result of a swap freeze operation.
+#[derive(Clone, Eq, PartialEq, Serialize, Deserialize)]
 pub struct SwapFreeze {
     pub freezing_signature: Vec<Signature>,
 }
