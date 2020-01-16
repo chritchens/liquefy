@@ -52,7 +52,7 @@ impl SLA {
         }
 
         let sla = SLA {
-            decimal,
+            cost,
             limit,
             recipient: recipient.to_owned(),
             token: token.to_owned(),
